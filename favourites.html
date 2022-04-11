@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourites</title>
+    <style>
+        .navbar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 80px;
+            width: 100%;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        }
+
+        .navbar>a {
+            margin: auto;
+            font-size: 25px;
+            color: green;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact List</a>
+        <a href="#">Favourites</a>
+    </nav>
+    <table >
+        <thead>
+            <th>Contact Number</th>
+            <th>Mobile Number</th>
+            <th>Type</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+        
+
+    </table>
+</body>
+<script>
+    var favourate=JSON.parse(localStorage.getItem("favourite")) || [];
+    display(favourate); 
+
+    function display(favourate){
+        document.querySelector("tbody").innerHTML="";
+        alldetails.forEach(contact => {
+            var row=document.createElement("tr");
+            var td1=document.createElement("td");
+            td1.innerText=contact.name;
+            var td2=document.createElement("td");
+            td2.innerText=contact.number;
+
+            var td3=document.createElement("td");
+            td3.innerText=contact.relative;
+
+            row.append(td1,td2,td3);
+            document.querySelector("tbody").append(row);
+
+        });
+    }
+</script>
+</html>

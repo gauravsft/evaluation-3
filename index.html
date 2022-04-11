@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        .navbar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 80px;
+            width: 100%;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        }
+
+        .navbar>a {
+            margin: auto;
+            font-size: 25px;
+            color: green;
+            text-decoration: none;
+        }
+
+
+        .userDetails {
+            display: grid;
+            height: auto;
+            width: 25%;
+            grid-template-columns: repeat(1, 1fr);
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        input,
+        select {
+            height: 20px;
+            width: 150px;
+            margin-top: 20px;
+            margin-left: 15px;
+
+        }
+
+        h2 {
+            margin-bottom: -10px;
+            margin-left: 15px;
+        }
+
+        #submit {
+            border-radius: 8px;
+            background-color: black;
+            color: white;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="contact.html">Contact List</a>
+        <a href="favourites.html">Favourites</a>
+    </nav>
+
+    <div class="userDetails">
+        <h2>Enter Your Contact Details</h2>
+        <input type="text" placeholder="Enter Contact Name" id="name">
+        <input type="number" placeholder="Enter Mobile Number" id="number">
+        <select id="Relative">
+            <option value="Select Type">Select Type</option>
+            <option value="Friends">Friends</option>
+            <option value="Family">Family</option>
+            <option value="Others">Others</option>
+        </select>
+        <input type="submit" value="Submit" id="submit">
+    </div>
+</body>
+
+<script>
+    document.getElementById("submit").addEventListener("click",outputfn);
+
+    
+    let contactDetails=JSON.parse(localStorage.getItem("contactDetails")) || [];
+
+    function outputfn(){
+        event.preventDefault();
+        var contactobj= {
+            name:document.getElementById("name").value,
+            number:document.getElementById("number").value,
+            relative:document.getElementById("Relative").value
+        }
+        contactDetails.push(contactobj);
+        localStorage.setItem("contactDetails" , JSON.stringify(contactobj));
+        alert("Contact Details Added Succesfully");
+    }
+</script>
+
+</html>
